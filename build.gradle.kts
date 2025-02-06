@@ -10,7 +10,7 @@ plugins {
 
 //Constants:
 
-val baseGroup: String by project
+val baseGroup = "com.emmmanue.lobaaddons"
 val mcVersion: String by project
 val version: String by project
 val mixinGroup = "$baseGroup.mixin"
@@ -67,6 +67,7 @@ repositories {
     maven("https://repo.spongepowered.org/maven/")
     // If you don't want to log in with your real minecraft account, remove this line
     maven("https://pkgs.dev.azure.com/djtheredstoner/DevAuth/_packaging/public/maven/v1")
+    maven("https://repo.polyfrost.cc/releases")
 }
 
 val shadowImpl: Configuration by configurations.creating {
@@ -78,6 +79,11 @@ dependencies {
     mappings("de.oceanlabs.mcp:mcp_stable:22-1.8.9")
     forge("net.minecraftforge:forge:1.8.9-11.15.1.2318-1.8.9")
 
+    compileOnly("cc.polyfrost:oneconfig-1.8.9-forge:0.2.2-alpha+")
+    shadowImpl("cc.polyfrost:oneconfig-wrapper-launchwrapper:1.0.0-beta+")
+
+    implementation("com.google.code.gson:gson:2.11.0")
+
     // If you don't want mixins, remove these lines
     shadowImpl("org.spongepowered:mixin:0.7.11-SNAPSHOT") {
         isTransitive = false
@@ -87,6 +93,22 @@ dependencies {
     // If you don't want to log in with your real minecraft account, remove this line
     runtimeOnly("me.djtheredstoner:DevAuth-forge-legacy:1.2.1")
 
+}
+tasks {
+    jar { // loads OneConfig at launch. Add these launch attributes but keep your old attributes!
+        manifest.attributes += mapOf(
+            "ModSide" to "CLIENT",
+            "TweakOrder" to 0,
+            "ForceLoadAsMod" to true,
+            "TweakClass" to "cc.polyfrost.oneconfig.loader.stage0.LaunchWrapperTweaker"
+        )
+    }
+}
+loom {
+    launchConfigs.named("client") {
+        // Loads OneConfig in dev env. Replace other tweak classes with this, but keep any other attributes!
+        arg("--tweakClass", "cc.polyfrost.oneconfig.loader.stage0.LaunchWrapperTweaker")
+    }
 }
 
 // Tasks:

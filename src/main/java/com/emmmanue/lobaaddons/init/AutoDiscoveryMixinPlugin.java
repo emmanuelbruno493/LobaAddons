@@ -1,4 +1,4 @@
-package com.github.emmanuelbruno493.lobaaddons.init;
+package com.emmmanue.lobaaddons.init;
 
 import org.spongepowered.asm.lib.tree.ClassNode;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
