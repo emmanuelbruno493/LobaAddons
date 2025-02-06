@@ -34,6 +34,10 @@ public class AddInventoryButtonCommand extends CommandBase {
 
     @Override
     public void processCommand(ICommandSender sender, String[] strings) {
+        StringBuilder command = new StringBuilder();
+        for (int i = 5; i < strings.length; i++) {
+            command.append(strings[i]+" ");
+        }
         InventoryButton button = new InventoryButton(
                 Integer.parseInt(strings[0]),
                 strings[0],
@@ -41,7 +45,7 @@ public class AddInventoryButtonCommand extends CommandBase {
                 Integer.parseInt(strings[2]),
                 Integer.parseInt(strings[3]),
                 Integer.parseInt(strings[4]),
-                strings[5],
+                command.toString(),
                 false);
 
         Presets presets = SerUtils.getPresets();

@@ -57,9 +57,15 @@ public class MixinGuiInventory extends GuiScreen {
         for (Preset preset : presets.presetlist){
             for (InventoryButton invbutton : preset.buttonList){
                 if (invbutton.id == button.id){
-                    int response = ClientCommandHandler.instance.executeCommand(mc.thePlayer, invbutton.command);
+                    sendCommand(invbutton.command);
                 }
             }
+        }
+    }
+
+    private void sendCommand(String command){
+        if (command.startsWith("/") && ClientCommandHandler.instance.executeCommand(mc.thePlayer, command) == 0){
+            mc.thePlayer.sendChatMessage(command);
         }
     }
 }
