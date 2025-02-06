@@ -10,7 +10,7 @@
 
 ## Features
 
-- Inventory Buttons **[BETA]**. 
+- **Inventory Buttons**. 
   - Usage: 
     - Adding a button: /debugb \<id> \<X> \<Y> \<width> \<height> \<command>
     - Deleting a button: /debugbdelete \<id>
