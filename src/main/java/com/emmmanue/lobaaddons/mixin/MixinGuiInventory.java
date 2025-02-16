@@ -1,6 +1,5 @@
 package com.emmmanue.lobaaddons.mixin;
 
-import com.emmmanue.lobaaddons.Event.InitGuiEvent;
 import com.emmmanue.lobaaddons.InventoryButtons.components.InventoryButton;
 import com.emmmanue.lobaaddons.InventoryButtons.components.Preset;
 import com.emmmanue.lobaaddons.InventoryButtons.components.PresetTypes;
@@ -10,7 +9,6 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.inventory.GuiInventory;
 import net.minecraftforge.client.ClientCommandHandler;
-import net.minecraftforge.common.MinecraftForge;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -23,7 +21,6 @@ public class MixinGuiInventory extends GuiScreen {
             at = @At("TAIL")
     )
     public void onGuiInit(CallbackInfo callbackInfoReturnable) {
-        MinecraftForge.EVENT_BUS.post(new InitGuiEvent());
         Presets presets = SerUtils.getPresets();
         if (presets.presetlist.isEmpty()){
             return;
@@ -38,6 +35,9 @@ public class MixinGuiInventory extends GuiScreen {
             return;
         }
         for (InventoryButton inventoryButton : preset.buttonList){
+            if (!inventoryButton.enabled){
+                continue;
+            }
             buttonList.add(new GuiButton(
                     inventoryButton.id,
                     inventoryButton.x,

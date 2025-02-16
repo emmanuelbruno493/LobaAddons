@@ -8,6 +8,6 @@ public class EditInventoryButtonsKeyBind implements Runnable{
 
     @Override
     public void run() {
-        Minecraft.getMinecraft().displayGuiScreen(new GuiInventory(Minecraft.getMinecraft().thePlayer));
+        Minecraft.getMinecraft().displayGuiScreen(new SelectInventoryButtonGui());
     }
 }

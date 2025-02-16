@@ -7,7 +7,7 @@ import java.io.*;
 
 public class SerUtils {
     public static void savePresets(Presets presets) {
-        File file = new File(Main.configFile, "presets.json");
+        File file = new File(Main.configFile, "presets-v2.json");
         FileOutputStream outputStream = null;
         try {
             outputStream = new FileOutputStream(file);
@@ -23,9 +23,9 @@ public class SerUtils {
         }
     }
     public static Presets getPresets(){
-        File file = new File(Main.configFile, "presets.json");
+        File file = new File(Main.configFile, "presets-v2.json");
         if (!file.exists()){
-            savePresets(new Presets());
+            Presets.loadDefault();
         }
         FileInputStream inputStream = null;
         try {

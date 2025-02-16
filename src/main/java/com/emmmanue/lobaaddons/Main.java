@@ -1,8 +1,5 @@
 package com.emmmanue.lobaaddons;
 
-import com.emmmanue.lobaaddons.InventoryButtons.AddInventoryButtonCommand;
-import com.emmmanue.lobaaddons.InventoryButtons.DeleteInventoryButtonCommand;
-import com.emmmanue.lobaaddons.Listener.Listener;
 import com.google.gson.Gson;
 import net.minecraftforge.client.ClientCommandHandler;
 import net.minecraftforge.common.MinecraftForge;
@@ -25,15 +22,14 @@ public class Main
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) throws IOException {
         configFile = new File(event.getModConfigurationDirectory(), "LobaAddons");
-        if(!configFile.exists()){configFile.mkdir();}
+        if(!configFile.exists()){
+            configFile.mkdir();
+        }
     }
     
     @EventHandler
     public void init(FMLInitializationEvent event){
         oneConfig = new Config();
-        ClientCommandHandler.instance.registerCommand(new AddInventoryButtonCommand());
-        ClientCommandHandler.instance.registerCommand(new DeleteInventoryButtonCommand());
-        MinecraftForge.EVENT_BUS.register(new Listener());
         MinecraftForge.EVENT_BUS.register(this);
     }
 }
