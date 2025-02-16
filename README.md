@@ -12,6 +12,8 @@
 
 - **Inventory Buttons**. 
   - Usage: 
-    - Adding a button: /debugb \<id> \<X> \<Y> \<width> \<height> \<command>
-    - Deleting a button: /debugbdelete \<id>
+    - Add a hotkey in the openConfig menu.
+    - Use the keybind to open the buttons editor
+    - Click on the button you want to edit
+    - Add a name and a command (in the corresponding order)
 
