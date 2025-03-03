@@ -6,7 +6,7 @@
 
 ## Installing the mod
 
->lastest version: [Beta 0.4]()
+>lastest version: [Beta 0.4](https://github.com/emmanuelbruno493/LobaAddons/releases/tag/Beta0.4)
 
 ## Features
 
