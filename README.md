@@ -6,14 +6,13 @@
 
 ## Installing the mod
 
->lastest version: [Beta 0.3](https://github.com/emmanuelbruno493/LobaAddons/releases/tag/Beta0.3)
+>lastest version: [Beta 0.4]()
 
 ## Features
 
 - **Inventory Buttons**. 
   - Usage: 
-    - Add a hotkey in the openConfig menu.
-    - Use the keybind to open the buttons editor
+    - /buttons
     - Click on the button you want to edit
     - Add a name and a command (in the corresponding order)
 

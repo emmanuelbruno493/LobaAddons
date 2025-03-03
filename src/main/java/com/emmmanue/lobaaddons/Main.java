@@ -1,5 +1,7 @@
 package com.emmmanue.lobaaddons;
 
+import com.emmmanue.lobaaddons.Commands.InventoryButtonsCommand;
+import com.emmmanue.lobaaddons.Event.OnTickEvent;
 import com.google.gson.Gson;
 import net.minecraftforge.client.ClientCommandHandler;
 import net.minecraftforge.common.MinecraftForge;
@@ -15,7 +17,6 @@ public class Main
 {
     public static final String MODID = "lobaaddons";
     public static final String VERSION = "1.0";
-    public static Config oneConfig;
     public static File configFile;
     public static Gson gson = new Gson();
 
@@ -29,7 +30,8 @@ public class Main
     
     @EventHandler
     public void init(FMLInitializationEvent event){
-        oneConfig = new Config();
         MinecraftForge.EVENT_BUS.register(this);
+        MinecraftForge.EVENT_BUS.register(new OnTickEvent());
+        ClientCommandHandler.instance.registerCommand(new InventoryButtonsCommand());
     }
 }
